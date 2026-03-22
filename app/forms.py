@@ -74,6 +74,24 @@ class UserForm(FlaskForm):
 
 
 class InspectionForm(FlaskForm):
+    def validate_photo_upload(form, field):
+        from wtforms.validators import ValidationError
+    
+        allowed_extensions = {"jpg", "jpeg", "png", "gif", "webp"}
+        max_size_mb = 10
+        for file in field.data:
+            if file:
+                ext = file.filename.rsplit(".", 1)[-1].lower()
+                if ext not in allowed_extensions:
+                    raise ValidationError(
+                        "Invalid file type. Allowed types: jpg, jpeg, png, gif, webp."
+                    )
+                # Check file size
+                file.seek(0, 2)  # seek to end
+                size = file.tell()
+                file.seek(0)  # reset to start
+                if size > max_size_mb * 1024 * 1024:  # 10MB in bytes
+                    raise ValidationError("File size must be <= 10MB.")
     """Inspection report form."""
 
     installation_name = StringField(
@@ -124,21 +142,3 @@ class PhotoForm(FlaskForm):
     submit = SubmitField("Upload")
 
 
-def validate_photo_upload(form, field):
-    from wtforms.validators import ValidationError
-
-    allowed_extensions = {"jpg", "jpeg", "png", "gif", "webp"}
-    max_size_mb = 10
-    for file in field.data:
-        if file:
-            ext = file.filename.rsplit(".", 1)[-1].lower()
-            if ext not in allowed_extensions:
-                raise ValidationError(
-                    "Invalid file type. Allowed types: jpg, jpeg, png, gif, webp."
-                )
-            # Check file size
-            file.seek(0, 2)  # seek to end
-            size = file.tell()
-            file.seek(0)  # reset to start
-            if size > max_size_mb * 1024 * 1024:  # 10MB in bytes
-                raise ValidationError("File size must be <= 10MB.")

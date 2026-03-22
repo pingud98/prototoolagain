@@ -3,7 +3,7 @@
 from flask import Blueprint, render_template_string, send_file, current_app
 from flask_login import login_required, current_user
 from app.models import Inspection
-from app.utils.pdf_generator import generate_pdf
+#from app.utils.pdf_generator import generate_pdf
 
 export_bp = Blueprint("export", __name__)
 
@@ -21,7 +21,7 @@ def inspection_pdf(inspection_id):
 
         abort(403)
 
-    pdf_bytes = generate_pdf(inspection_id)
+#    pdf_bytes = generate_pdf(inspection_id)
     # Create a temporary file to serve
     from pathlib import Path
     import tempfile

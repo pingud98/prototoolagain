@@ -2,12 +2,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
-from flask_wtf.csrf import CsrfProtect
+from flask_wtf.csrf import CSRFProtect
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
-csrf = CsrfProtect()
-csrf.init_app(app)
+csrf = CSRFProtect()
 from config import Config
 
 db = SQLAlchemy()
@@ -17,6 +16,7 @@ bcrypt = Bcrypt()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
+    csrf.init_app(app)
     app.config.from_object(config_class)
 
     # Initialize extensions
@@ -33,12 +33,12 @@ def create_app(config_class=Config):
     from app.routes.export import export_bp
 
     app.register_blueprint(auth_bp)
-    app.register_blueprint(inspections_bp)
-    app.register_blueprint(admin_bp)
-    app.register_blueprint(export_bp)
+    app.register_blueprint(inspections_bp, url_prefix="/inspections")
+    app.register_blueprint(admin_bp, url_prefix="/admin")
+    app.register_blueprint(export_bp, url_prefix="/export")
 
     # Create database tables if they don't exist
-    @app.before_first_request
+    @app.before_request
     def create_tables():
         db.create_all()
 
@@ -56,5 +56,9 @@ def create_app(config_class=Config):
     formatter = logging.Formatter("SECURITY AUDIT: %(asctime)s - %(message)s")
     handler.setFormatter(formatter)
     logger.addHandler(handler)
+
+    @app.route("/")
+    def index():
+        return "Welcome"
 
     return app

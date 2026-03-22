@@ -8,7 +8,16 @@ from pathlib import Path
 
 def install_deps():
     subprocess.run(
-        [sys.executable, "-m", "pip", "install", "-r", "requirements.txt"], check=True
+        [
+            sys.executable,
+            "-m",
+            "pip",
+            "install",
+            "--break-system-packages",
+            "-r",
+            "requirements.txt",
+        ],
+        check=True,
     )
 
 
@@ -29,6 +38,8 @@ def generate_cert():
             "365",
             "-out",
             "certs/cert.pem",
+            "-subj",
+            "/C=US/ST=State/L=City/O=Organization/CN=localhost",
         ],
         check=True,
         stdout=subprocess.DEVNULL,

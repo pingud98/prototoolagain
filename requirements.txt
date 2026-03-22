@@ -1,7 +1,10 @@
-Flask==3.0.0
+Flask==2.3.3
 Flask-Login==0.6.0
 Flask-WTF==1.1.0
 Flask-SQLAlchemy==3.0.5
 WeasyPrint==60.1
 python-dotenv==1.0.0
 bcrypt==4.1.0
+passlib==1.7.4
+Flask-Bcrypt==1.0.0
+Flask-Limiter==2.0.1

@@ -20,10 +20,10 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(128), nullable=False)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
     is_active = db.Column(db.Boolean, nullable=False, default=True)
-     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-      # Password reset fields
-     password_reset_token = db.Column(db.String(64), nullable=True)
-     password_reset_expires = db.Column(db.DateTime, nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    # Password reset fields
+    password_reset_token = db.Column(db.String(64), nullable=True)
+    password_reset_expires = db.Column(db.DateTime, nullable=True)
 
     # Password handling
     def set_password(self, password: str) -> None:

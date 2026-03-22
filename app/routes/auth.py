@@ -4,9 +4,10 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
 from app import db
 from app.models import User
-from app.forms import LoginForm, RegisterForm
+from app.forms_dir.login_form import LoginForm
+from app.forms_dir.register_form import RegisterForm
 from datetime import datetime, timedelta
-from itsdangerous import URLSafeTimedSerializer, BadSignature, PasswordExpired
+from itsdangerous import URLSafeTimedSerializer, BadSignature, SignatureExpired
 from flask import current_app
 
 auth_bp = Blueprint("auth", __name__)
@@ -86,7 +87,7 @@ def password_reset(token):
     serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
     try:
         user_id = serializer.loads(token, salt="password-reset", max_age=3600)
-    except (BadSignature, PasswordExpired):
+    except (BadSignature, SignatureExpired):
         flash("Invalid or expired reset link.", "danger")
         return redirect(url_for("auth.password_reset_request"))
     user = User.query.get(user_id)

@@ -37,9 +37,9 @@ def generate_pdf(inspection):
         <div class="section"><strong>Status:</strong> {{ conclusion_status }}</div>
         <div class="section"><strong>Observations:</strong> {{ observations }}</div>
         <div class="section"><strong>Inspectors:</strong>
-            {% for inspector in inspectors %}
+#            {% for inspector in inspectors %}
                 {{ inspector.full_name or inspector.free_text_name }}, 
-            {% endfor %}
+#            {% endfor %}
         </div>
         <div class="section photos">
             {% for photo in photos %}
