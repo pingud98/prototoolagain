@@ -7,3 +7,9 @@
 [2m2026-03-21T23:59:04.846344Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Looking for memories at: "/home/jimmy/inspection_app_n/prototoolagain/.ralph/agent/memories.md" (exists: false)
 [2m2026-03-21T23:59:04.846349Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Successfully loaded 0 memories from store
 [2m2026-03-21T23:59:04.846352Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Memory store is empty - no memories to inject
+[2m2026-03-22T00:08:06.435267Z[0m [33m WARN[0m [2mralph::loop_runner[0m[2m:[0m Output indicated `ralph emit`, but no event became readable before fallback logic [3mhat[0m[2m=[0mralph
+[2m2026-03-22T00:08:06.435436Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Memory injection check: enabled=true, inject=Auto, workspace_root="/home/jimmy/inspection_app_n/prototoolagain"
+[2m2026-03-22T00:08:06.435450Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Looking for memories at: "/home/jimmy/inspection_app_n/prototoolagain/.ralph/agent/memories.md" (exists: false)
+[2m2026-03-22T00:08:06.435455Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Successfully loaded 0 memories from store
+[2m2026-03-22T00:08:06.435458Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Memory store is empty - no memories to inject
+[2m2026-03-22T00:09:21.753530Z[0m [33m WARN[0m [2mralph::rpc_stdin[0m[2m:[0m Failed to write to stdout, stopping emitter

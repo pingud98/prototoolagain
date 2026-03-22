@@ -182,9 +182,6 @@ Buttons:
 ## GITHUB INSTRUCTIONS
 
 - The repository already exists and has been initialised with prior commits
-- Completely discard all prior history
-- Use git checkout --orphan new-branch, add all files, commit, then force-push to main
-- Commit message: "Initial commit: Inspection reporting app"
 - Include a comprehensive README.md with:
   - Project overview
   - Requirements (Python version, OS)
@@ -221,17 +218,8 @@ Build in this order:
 9. run.py
 10. README.md
 11. .gitignore
-12. GitHub force-push
+12. GitHub push
+13. Review code
+14. Implement any issues from the review.
 
 Do not proceed to the next step until the current one is complete and internally consistent.
-
----
-
-## NOTES FOR THE OPERATOR
-
-- WeasyPrint requires system-level dependencies. Install them before running setup.py:
-  Debian/Ubuntu:  sudo apt install libpango-1.0-0 libharfbuzz0b libpangoft2-1.0-0
-  macOS:          brew install pango
-  Windows:        See https://doc.courtbouillon.org/weasyprint/stable/first_steps.html
-
-
