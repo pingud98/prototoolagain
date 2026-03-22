@@ -5,6 +5,7 @@ from typing import Optional
 
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from passlib.hash import bcrypt
 
 from app import db
 
@@ -19,12 +20,15 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(128), nullable=False)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
     is_active = db.Column(db.Boolean, nullable=False, default=True)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+      # Password reset fields
+     password_reset_token = db.Column(db.String(64), nullable=True)
+     password_reset_expires = db.Column(db.DateTime, nullable=True)
 
     # Password handling
     def set_password(self, password: str) -> None:
         """Hash and store a password."""
-        self.password_hash = generate_password_hash(password)
+        self.password_hash = bcrypt.hash(password, rounds=12)
 
     def check_password(self, password: str) -> bool:
         """Check a plaintext password against the stored hash."""

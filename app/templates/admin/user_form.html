@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}{{ 'Edit User' if user_id else 'Create User' }}{% endblock %}
+
+{% block content %}
+<h1>{{ 'Edit User' if user_id else 'Create User' }}</h1>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <p>
+        {{ form.username.label }}<br>
+        {{ form.username(size=32) }}
+        {% if form.username.errors %}
+            <small style="color: red;">{{ form.username.errors[0] }}</small>
+        {% endif %}
+    </p>
+
+    <p>
+        {{ form.full_name.label }}<br>
+        {{ form.full_name(size=32) }}
+        {% if form.full_name.errors %}
+            <small style="color: red;">{{ form.full_name.errors[0] }}</small>
+        {% endif %}
+    </p>
+
+    <p>
+        {{ form.email.label }}<br>
+        {{ form.email(size=32) }}
+        {% if form.email.errors %}
+            <small style="color: red;">{{ form.email.errors[0] }}</small>
+        {% endif %}
+    </p>
+
+    <p>
+        {{ form.password.label }}<br>
+        {{ form.password(size=32) }}
+    </p>
+
+    <p>
+        {{ form.is_admin.label }}<br>
+        {{ form.is_admin() }}
+    </p>
+
+    <p>
+        {{ form.submit() }}
+    </p>
+</form>
+
+{% if success_message %}
+    <p style="color: green;">{{ success_message }}</p>
+{% endif %}
+{% endblock %}

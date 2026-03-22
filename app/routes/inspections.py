@@ -3,8 +3,13 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 from app import db
-from app.models import Inspection, InspectionInspector
+from app.models import Inspection, InspectionInspector, Photo
+from werkzeug.utils import secure_filename
+import os
+from uuid import uuid4
 from app.forms import InspectionForm
+
+from flask import current_app
 
 inspections_bp = Blueprint("inspections", __name__)
 
@@ -13,7 +18,11 @@ inspections_bp = Blueprint("inspections", __name__)
 @login_required
 def index():
     """List all inspections for the logged-in user."""
-    inspections = Inspection.query.order_by(Inspection.inspection_date.desc()).all()
+    inspections = (
+        Inspection.query.filter_by(created_by=current_user.id)
+        .order_by(Inspection.inspection_date.desc())
+        .all()
+    )
     return render_template("dashboard.html", inspections=inspections)
 
 
@@ -49,6 +58,21 @@ def create():
                 )
                 db.session.add(inspector_obj)
         db.session.commit()
+        # Handle photo uploads
+        for photo_file in form.photos.data:
+            filename = secure_filename(photo_file.filename)
+            unique_filename = f"{uuid4().hex}_{filename}"
+            upload_dir = os.path.join(current_app.instance_path, "uploads")
+            os.makedirs(upload_dir, exist_ok=True)
+            file_path = os.path.join(upload_dir, unique_filename)
+            photo_file.save(file_path)
+            photo = Photo(
+                inspection_id=inspection.id,
+                filename=unique_filename,
+                caption="",
+                action_required="none",
+            )
+            db.session.add(photo)
         flash("Inspection created successfully.", "success")
         return redirect(url_for("inspections.view", inspection_id=inspection.id))
     return render_template("inspection_form.html", form=form)
@@ -86,6 +110,21 @@ def edit(inspection_id):
         # Update inspectors
         # Simplified handling for brevity
         db.session.commit()
+        # Handle additional photo uploads
+        for photo_file in form.photos.data:
+            filename = secure_filename(photo_file.filename)
+            unique_filename = f"{uuid4().hex}_{filename}"
+            upload_dir = os.path.join(current_app.instance_path, "uploads")
+            os.makedirs(upload_dir, exist_ok=True)
+            file_path = os.path.join(upload_dir, unique_filename)
+            photo_file.save(file_path)
+            photo = Photo(
+                inspection_id=inspection.id,
+                filename=unique_filename,
+                caption="",
+                action_required="none",
+            )
+            db.session.add(photo)
         flash("Inspection updated successfully.", "success")
         return redirect(url_for("inspections.view", inspection_id=inspection.id))
     return render_template("inspection_form.html", form=form)

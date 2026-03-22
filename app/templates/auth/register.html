@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="max-w-md mx-auto p-4">
+    <h2>Register</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.username.label }}<br>
+            {{ form.username() }}
+            {% for error in form.username.errors %}
+                <small style="color:red;">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.full_name.label }}<br>
+            {{ form.full_name() }}
+            {% for error in form.full_name.errors %}
+                <small style="color:red;">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.email.label }}<br>
+            {{ form.email() }}
+            {% for error in form.email.errors %}
+                <small style="color:red;">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.password.label }}<br>
+            {{ form.password() }}
+            {% for error in form.password.errors %}
+                <small style="color:red;">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.password_confirm.label }}<br>
+            {{ form.password_confirm() }}
+            {% for error in form.password_confirm.errors %}
+                <small style="color:red;">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.is_admin.label }}<br>
+            {{ form.is_admin() }}
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+</div>
+{% endblock %}

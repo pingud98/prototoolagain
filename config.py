@@ -1,15 +1,12 @@
-import os
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent
-
 class Config:
-    SECRET_KEY = os.getenv('SECRET_KEY') or 'dev-secret-key-' + str(os.getpid())
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', f'sqlite:///{BASE_DIR / "inspection.db"}')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    DEBUG = False
     TESTING = False
-    WTF_CSRF_ENABLED = True
-    # File upload config
-    UPLOAD_FOLDER = str(BASE_DIR / 'uploads')
-    MAX_CONTENT_LENGTH = 10 * 1024 * 1024  # 10MB per file
-    ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
+    CSRF_ENABLED = True
+    SECRET_KEY = "dev-secret-key"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///instance/inspection.db"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SESSION_TYPE = "filesystem"
+    REMEMBER_COOKIE_DURATION = 86400
+    REMEMBER_COOKIE_HTTPONLY = True
+    REMEMBER_COOKIE_SECURE = True
+    REMEMBER_COOKIE_SAMESITE = "Lax"

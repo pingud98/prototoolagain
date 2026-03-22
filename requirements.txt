@@ -1,10 +1,7 @@
-Flask>=2.3
-Flask-Login
-Flask-WTF
-Flask-SQLAlchemy
-WeasyPrint
-trustme
-python-dotenv
-Flask-Bcrypt
-Pillow
-uuid
+Flask==3.0.0
+Flask-Login==0.6.0
+Flask-WTF==1.1.0
+Flask-SQLAlchemy==3.0.5
+WeasyPrint==60.1
+python-dotenv==1.0.0
+bcrypt==4.1.0
