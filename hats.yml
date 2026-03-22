@@ -1,0 +1,13 @@
+# hats.yml
+event_loop:
+  starting_event: "task.start"
+
+hats:
+  builder:
+    name: "Builder"
+    triggers: ["task.start"]
+    publishes: ["task.done"]
+    instructions: |
+      Implement the task from PROMPT.md.
+      Run any relevant tests.
+      When finished, emit task.done and print LOOP_COMPLETE.

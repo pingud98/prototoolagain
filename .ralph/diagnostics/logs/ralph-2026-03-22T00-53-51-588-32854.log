@@ -1,0 +1,9 @@
+[2m2026-03-21T23:53:51.596629Z[0m [33m WARN[0m [2mralph::loop_runner[0m[2m:[0m Interactive mode requested but stdout is not a TTY, falling back to autonomous
+[2m2026-03-21T23:53:51.596942Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Memory injection check: enabled=true, inject=Auto, workspace_root="/home/jimmy/inspection_app_n/prototoolagain"
+[2m2026-03-21T23:53:51.596956Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Looking for memories at: "/home/jimmy/inspection_app_n/prototoolagain/.ralph/agent/memories.md" (exists: false)
+[2m2026-03-21T23:53:51.596960Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Successfully loaded 0 memories from store
+[2m2026-03-21T23:53:51.596961Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Memory store is empty - no memories to inject
+[2m2026-03-21T23:59:04.846327Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Memory injection check: enabled=true, inject=Auto, workspace_root="/home/jimmy/inspection_app_n/prototoolagain"
+[2m2026-03-21T23:59:04.846344Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Looking for memories at: "/home/jimmy/inspection_app_n/prototoolagain/.ralph/agent/memories.md" (exists: false)
+[2m2026-03-21T23:59:04.846349Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Successfully loaded 0 memories from store
+[2m2026-03-21T23:59:04.846352Z[0m [32m INFO[0m [2mralph_core::event_loop[0m[2m:[0m Memory store is empty - no memories to inject

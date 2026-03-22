@@ -1,0 +1,10 @@
+Flask>=2.3
+Flask-Login
+Flask-WTF
+Flask-SQLAlchemy
+WeasyPrint
+trustme
+python-dotenv
+Flask-Bcrypt
+Pillow
+uuid
