@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}New Inspection{% endblock %}
+
+{% block content %}
+<h1>New Inspection</h1>
+<form method="POST" enctype="multipart/form-data">
+  {{ form.hidden_tag() }}
+  <fieldset>
+    <legend>Installation Details</legend>
+    <div class="mb-3">
+      {{ form.installation_name.label(class="form-label") }}
+      {{ form.installation_name(class="form-control") }}
+    </div>
+    <div class="mb-3">
+      {{ form.location.label(class="form-label") }}
+      {{ form.location(class="form-control") }}
+    </div>
+    <div class="mb-3">
+      {{ form.inspection_date.label(class="form-label") }}
+      {{ form.inspection_date(class="form-control") }}
+    </div>
+    <div class="mb-3">
+      {{ form.reference_number.label(class="form-label") }}
+      {{ form.reference_number(class="form-control") }}
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Observations</legend>
+    {{ form.observations.label(class="form-label") }}
+    {{ form.observations(class="form-control", rows=6) }}
+  </fieldset>
+  <fieldset>
+    <legend>Conclusion</legend>
+    {{ form.conclusion_text.label(class="form-label") }}
+    {{ form.conclusion_text(class="form-control", rows=6) }}
+    {{ form.conclusion_status.label(class="form-label") }}
+    {{ form.conclusion_status(class="form-select") }}
+  </fieldset>
+  <fieldset>
+    <legend>Inspectors</legend>
+    <div id="inspectors">
+      {{ form.inspectors_form|safe }}
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Photos</legend>
+    <div id="photos">
+      {{ form.photos_form|safe }}
+    </div>
+  </fieldset>
+  <button type="submit" class="btn btn-primary">Save Report</button>
+</form>
+{% endblock %}

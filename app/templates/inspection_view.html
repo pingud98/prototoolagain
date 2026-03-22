@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Inspection Report{% endblock %}
+
+{% block content %}
+<h1>Inspection Report</h1>
+
+<p><strong>Installation Name:</strong> {{ inspection.installation_name }}</p>
+<p><strong>Location:</strong> {{ inspection.location }}</p>
+<p><strong>Inspection Date:</strong> {{ inspection.inspection_date }}</p>
+<p><strong>Reference Number:</strong> {{ inspection.reference_number }}</p>
+<p><strong>Observations:</strong> {{ inspection.observations }}</p>
+<p><strong>Conclusion Text:</strong> {{ inspection.conclusion_text }}</p>
+<p><strong>Conclusion Status:</strong> {{ inspection.conclusion_status }}</p>
+<p><strong>Created By:</strong> {{ inspection.creator.username }}</p>
+<p><strong>Created At:</strong> {{ inspection.created_at }}</p>
+
+<h2>Inspectors</h2>
+<ul>
+  {% for inspector in inspectors %}
+    <li>{{ inspector.get_full_name_or_name() }}</li>
+  {% endfor %}
+</ul>
+
+<h2>Photos</h2>
+<div class="row">
+  {% for photo in photos %}
+    <div class="col-md-3">
+      <img src="{{ url_for('static', filename='uploads/' + photo.filename) }}" class="img-thumbnail" alt="{{ photo.caption }}">
+      <small>{{ photo.caption }}</small>
+      {% if photo.action_required != 'none' %}
+        <br><strong>Action Required:</strong> {{ photo.action_required }}
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+
+<a href="{{ url_for('inspections.edit', inspection_id=inspection.id) }}" class="btn btn-outline-primary">Edit Report</a>
+<a href="{{ url_for('inspections.delete', inspection_id=inspection.id) }}" class="btn btn-outline-danger">Delete Report</a>
+{% endblock %}
